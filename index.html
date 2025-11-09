@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Civil - Inicio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- Google Fonts para títulos elegantes -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Animaciones -->
+    <style>
+        .fade-in { animation: fadeIn 1.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: none; } }
+        .boton-principal {
+            background: linear-gradient(90deg, #d291bc 0%, #f3c6e8 100%);
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.2em;
+            padding: 14px 38px;
+            border: none;
+            border-radius: 30px;
+            margin: 30px 0 0 0;
+            box-shadow: 0 4px 16px #d291bc33;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .boton-principal:hover {
+            background: linear-gradient(90deg, #b5838d 0%, #ffb4a2 100%);
+            transform: scale(1.05);
+        }
+        .header-floral {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            display: block;
+            opacity: 0.92;
+            filter: drop-shadow(0 6px 18px #d291bc33);
+        }
+        .fondo-floral {
+            position: absolute;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            opacity: 0.13;
+            background: url('assets/fondo_floral.png') repeat;
+            background-size: 600px;
+        }
+        #fondo-animado {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            animation: flotar 18s linear infinite;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(0) scale(1); opacity: 0.18; }
+            50% { opacity: 0.32; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0.10; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fondo-floral"></div>
+    <header class="fade-in">
+        <h1 style="font-family: 'Dancing Script', cursive; font-size:3em; color:#d291bc;">¡Nuestra Boda Civil!</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="video.html">Videos</a></li>
+                <li><a href="firmas.html">Libro de Firmas</a></li>
+                <li><a href="agradecimientos.html">Agradecimientos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="fade-in">
+        <section class="bienvenida">
+            <h2 style="font-family: 'Dancing Script', cursive; font-size:2.2em; color:#b5838d;">¡Bienvenidos a nuestro gran día!</h2>
+            <p style="font-size:1.2em; color:#5a3e36;">Nos llena de alegría compartir este momento tan especial con ustedes. Gracias por ser parte de nuestra historia y por acompañarnos en este capítulo tan importante de nuestras vidas.</p>
+        </section>
+        <section class="carrusel-inicio" style="margin: 2.5em auto; max-width: 600px; position:relative;">
+            <div id="carrusel-fotos" style="overflow:hidden; border-radius:30px; box-shadow:0 8px 32px #d291bc33;">
+                <img id="carrusel-img" src="assets/images/1.jpg" alt="Foto especial" style="width:100%; height:500px; object-fit:cover; transition:opacity 0.7s; display:block; border: 8px solid #d291bc; box-shadow: 0 4px 24px #d291bc33; border-radius: 24px;">
+            </div>
+            <button id="carrusel-prev" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#d291bc,#ffb4a2);border:none;border-radius:50%;width:48px;height:48px;color:white;font-size:2em;box-shadow:0 4px 16px #d291bc55;cursor:pointer;z-index:2;opacity:0.85;">&#8592;</button>
+            <button id="carrusel-next" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#d291bc,#ffb4a2);border:none;border-radius:50%;width:48px;height:48px;color:white;font-size:2em;box-shadow:0 4px 16px #d291bc55;cursor:pointer;z-index:2;opacity:0.85;">&#8594;</button>
+        </section>
+        <section class="frases-romanticas" style="text-align:center; margin:2.5em auto; max-width:700px;">
+            <blockquote style="font-family:'Dancing Script',cursive;font-size:1.7em;color:#d291bc; margin-bottom:1em;">"El amor no mira con los ojos, sino con el alma."<br><span style="font-size:0.7em;color:#b5838d;">– William Shakespeare</span></blockquote>
+            <blockquote style="font-family:'Dancing Script',cursive;font-size:1.5em;color:#b5838d; margin-bottom:1em;">"Contigo, cada momento es para siempre."</blockquote>
+            <blockquote style="font-family:'Dancing Script',cursive;font-size:1.3em;color:#ffb4a2;">"Nuestro amor es la mejor historia que jamás contaremos."</blockquote>
+        </section>
+        <section style="text-align:center; margin:2.5em auto;">
+            <a href="galeria.html" class="boton-principal" style="margin-right:1.5em;">Ver la galería</a>
+            <a href="firmas.html" class="boton-principal">Libro de Firmas</a>
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Hecho con amor &copy; 2025</p>
+    </footer>
+    <!-- Fondo animado con partículas -->
+    <div id="fondo-animado"></div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Carrusel de fotos
+        const fotosCarrusel = [
+            'assets/images/1.jpg',
+            'assets/images/2.jpg',
+            'assets/images/3.jpg',
+            'assets/images/4.jpg',
+            'assets/images/5.jpg',
+            'assets/images/6.jpg',
+            'assets/images/7.jpg',
+            'assets/images/8.jpg',
+            'assets/images/9.jpg',
+            'assets/images/10.jpg'
+        ];
+        let idxCarrusel = 0;
+        const carruselImg = document.getElementById('carrusel-img');
+        let autoCarrusel = setInterval(()=>{
+            idxCarrusel = (idxCarrusel + 1) % fotosCarrusel.length;
+            carruselImg.style.opacity = 0.2;
+            setTimeout(()=>{
+                carruselImg.src = fotosCarrusel[idxCarrusel];
+                carruselImg.style.opacity = 1;
+            }, 350);
+        }, 4000);
+        function detenerAutoCarrusel() {
+            clearInterval(autoCarrusel);
+            autoCarrusel = null;
+        }
+        document.getElementById('carrusel-prev').onclick = function() {
+            if (autoCarrusel) detenerAutoCarrusel();
+            idxCarrusel = (idxCarrusel - 1 + fotosCarrusel.length) % fotosCarrusel.length;
+            carruselImg.style.opacity = 0.2;
+            setTimeout(()=>{
+                carruselImg.src = fotosCarrusel[idxCarrusel];
+                carruselImg.style.opacity = 1;
+            }, 350);
+        };
+        document.getElementById('carrusel-next').onclick = function() {
+            if (autoCarrusel) detenerAutoCarrusel();
+            idxCarrusel = (idxCarrusel + 1) % fotosCarrusel.length;
+            carruselImg.style.opacity = 0.2;
+            setTimeout(()=>{
+                carruselImg.src = fotosCarrusel[idxCarrusel];
+                carruselImg.style.opacity = 1;
+            }, 350);
+        };
+        let lastScroll = window.pageYOffset;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 80) {
+                header.classList.add('header-oculto');
+            } else if (currentScroll < lastScroll) {
+                header.classList.remove('header-oculto');
+            }
+            lastScroll = currentScroll;
+        });
+    });
+    function crearParticulasFondo() {
+        const fondo = document.getElementById('fondo-animado');
+        fondo.innerHTML = '';
+        const colores = ['#d291bc', '#ffb4a2', '#b5838d', '#fff5f5'];
+        for (let i = 0; i < 22; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 80 + 40;
+            p.style.width = p.style.height = size + 'px';
+            p.style.left = (Math.random() * 100) + 'vw';
+            p.style.bottom = '-' + (Math.random() * 40 + 10) + 'vh';
+            p.style.background = colores[Math.floor(Math.random()*colores.length)];
+            p.style.animationDuration = (14 + Math.random()*10) + 's';
+            fondo.appendChild(p);
+        }
+    }
+    crearParticulasFondo();
+    window.addEventListener('resize', crearParticulasFondo);
+    </script>
+</body>
+</html> 

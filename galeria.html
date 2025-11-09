@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Civil - Galería</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="fondo-floral"></div>
+    <header class="fade-in">
+        <h1 style="font-family: 'Dancing Script', cursive; font-size:3em; color:#d291bc;">Nuestra Galería</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="galeria.html" class="active">Galería</a></li>
+                <li><a href="video.html">Videos</a></li>
+                <li><a href="firmas.html">Libro de Firmas</a></li>
+                <li><a href="agradecimientos.html">Agradecimientos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="fade-in">
+        <section class="galeria-grid">
+            <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Hecho con amor &copy; 2025</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev">&#8592;</button>
+        <div class="lightbox-content">
+            <img src="" alt="Imagen ampliada">
+        </div>
+        <button class="lightbox-play-central" id="lightbox-play-central" title="Reproducir video especial"><span id="play-icon">&#9654;</span></button>
+        <button class="lightbox-next">&#8594;</button>
+        <audio id="slideshow-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b5fa3b7b.mp3" preload="auto"></audio>
+    </div>
+
+    <!-- Fondo animado con partículas -->
+    <div id="fondo-animado"></div>
+    <style>
+    #fondo-animado {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      animation: flotar 18s linear infinite;
+    }
+    @keyframes flotar {
+      0% { transform: translateY(0) scale(1); opacity: 0.18; }
+      50% { opacity: 0.32; }
+      100% { transform: translateY(-120vh) scale(1.2); opacity: 0.10; }
+    }
+    </style>
+
+    <script>
+        // Declarar el array de imágenes como global
+        const archivosGaleria = [
+            'assets/images/IMG_20250503_123509.jpg',
+            'assets/images/IMG_20250503_123507.jpg',
+            'assets/images/IMG_20250503_123418.jpg',
+            'assets/images/IMG_20250503_123417.jpg',
+            'assets/images/IMG_20250503_123342.jpg',
+            'assets/images/IMG_20250503_123339.jpg',
+            'assets/images/IMG_20250503_123338.jpg',
+            'assets/images/IMG_20250503_123307.jpg',
+            'assets/images/IMG_20250503_123305.jpg',
+            'assets/images/IMG_20250503_123152.jpg',
+            'assets/images/IMG_20250503_123149.jpg',
+            'assets/images/IMG_20250503_123148.jpg',
+            'assets/images/IMG_20250503_123110.jpg',
+            'assets/images/IMG_20250503_123109.jpg',
+            'assets/images/IMG_20250503_123034.jpg',
+            'assets/images/IMG_20250503_123032.jpg',
+            'assets/images/IMG_20250503_123030.jpg',
+            'assets/images/IMG_20250503_122941.jpg',
+            'assets/images/IMG_20250503_122939.jpg',
+            'assets/images/IMG_20250503_122916.jpg',
+            'assets/images/IMG_20250503_122914.jpg',
+            'assets/images/IMG_20250503_122911.jpg',
+            'assets/images/IMG_20250503_122855.jpg',
+            'assets/images/IMG_20250503_121450.jpg',
+            'assets/images/IMG_20250503_121442.jpg',
+            'assets/images/IMG_20250503_121433.jpg',
+            'assets/images/IMG_20250503_120525.jpg',
+            'assets/images/IMG_20250503_120524.jpg',
+            'assets/images/IMG_20250503_120522.jpg',
+            'assets/images/IMG_20250503_120521.jpg',
+            'assets/images/IMG_20250503_120509.jpg',
+            'assets/images/IMG_20250503_120445.jpg',
+            'assets/images/IMG_20250503_120444.jpg',
+            'assets/images/IMG_20250503_120440.jpg',
+            'assets/images/IMG_20250503_120436.jpg',
+            'assets/images/IMG_20250503_120414.jpg',
+            'assets/images/IMG_20250503_120412.jpg',
+            'assets/images/IMG_20250503_120411.jpg',
+            'assets/images/IMG_20250503_120345.jpg',
+            'assets/images/IMG_20250503_120343.jpg',
+            'assets/images/IMG_20250503_120321.jpg',
+            'assets/images/IMG_20250503_120318.jpg',
+            'assets/images/IMG_20250503_120302.jpg',
+            'assets/images/IMG_20250503_120301.jpg',
+            'assets/images/IMG_20250503_120245.jpg',
+            'assets/images/IMG_20250503_120244.jpg',
+            'assets/images/IMG_20250503_120226.jpg',
+            'assets/images/IMG_20250503_120225.jpg',
+            'assets/images/IMG_20250503_120223.jpg',
+            'assets/images/IMG_20250503_120157.jpg',
+            'assets/images/IMG_20250503_120155.jpg',
+            'assets/images/IMG_20250503_120141.jpg',
+            'assets/images/IMG_20250503_120138.jpg',
+            'assets/images/IMG_20250503_120120.jpg',
+            'assets/images/IMG_20250503_120114.jpg',
+            'assets/images/IMG_20250503_120113.jpg',
+            'assets/images/IMG_20250503_120043.jpg',
+            'assets/images/IMG_20250503_120040.jpg',
+            'assets/images/IMG_20250503_120029.jpg',
+            'assets/images/IMG_20250503_120028.jpg',
+            'assets/images/IMG_20250503_120025.jpg',
+            'assets/images/IMG_20250503_120009.jpg',
+            'assets/images/IMG_20250503_120008.jpg',
+            'assets/images/IMG_20250503_120007.jpg',
+            'assets/images/IMG_20250503_115935.jpg',
+            'assets/images/IMG_20250503_115934.jpg',
+            'assets/images/IMG_20250503_115834.jpg',
+            'assets/images/IMG_20250503_115810.jpg',
+            'assets/images/IMG_20250503_115744.jpg',
+            'assets/images/IMG_20250503_115743.jpg',
+            'assets/images/IMG_20250503_115549.jpg',
+            'assets/images/IMG_20250503_115549_1.jpg',
+            'assets/images/IMG_20250503_115545.jpg',
+            'assets/images/IMG_20250503_115504.jpg',
+            'assets/images/IMG_20250503_115503.jpg'
+        ];
+        function cargarImagenes() {
+            const galeria = document.querySelector('.galeria-grid');
+            galeria.innerHTML = '';
+            archivosGaleria.forEach((archivo, idx) => {
+                const div = document.createElement('div');
+                div.className = 'galeria-item';
+                if (archivo.endsWith('.mp4')) {
+                    div.innerHTML = `
+                        <div class="video-container">
+                            <button class="play-button" onclick="event.stopPropagation(); reproducirVideoGaleria()">
+                                <span>&#9654;</span>
+                            </button>
+                            <span class="video-label">Video especial</span>
+                        </div>`;
+                } else {
+                    const img = document.createElement('img');
+                    img.src = archivo;
+                    img.alt = 'Foto de la boda';
+                    img.loading = 'lazy';
+                    img.onerror = function() {
+                        div.remove();
+                    };
+                    div.appendChild(img);
+                    div.addEventListener('click', () => abrirLightbox(idx));
+                }
+                galeria.appendChild(div);
+            });
+        }
+
+        // Lightbox
+        let lightboxIdx = 0;
+        function abrirLightbox(idx) {
+            lightboxIdx = idx;
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxContent = lightbox.querySelector('.lightbox-content');
+            mostrarEnLightbox(archivosGaleria[lightboxIdx], lightboxContent);
+            lightbox.classList.add('active');
+        }
+        function mostrarEnLightbox(archivo, lightboxContent) {
+            if (archivo.endsWith('.mp4')) {
+                lightboxContent.innerHTML = `<video src='${archivo}' controls style='max-width:96vw;max-height:92vh;border-radius:15px;background:#000;'></video>`;
+                playBtnCentral.style.display = 'none';
+            } else {
+                lightboxContent.innerHTML = `<img src='${archivo}' alt='Imagen ampliada' style='max-width:96vw;max-height:92vh;border-radius:15px;background:#fff;'>`;
+                playBtnCentral.style.display = '';
+            }
+        }
+        function cerrarLightbox() {
+            const lightbox = document.querySelector('.lightbox');
+            const video = lightbox.querySelector('video');
+            if (video && !video.paused) {
+                video.pause();
+            }
+            lightbox.classList.remove('active');
+            pausarSlideshow();
+            playBtnCentral.style.display = '';
+        }
+        function avanzarLightbox() {
+            lightboxIdx = (lightboxIdx + 1) % archivosGaleria.length;
+            const lightboxContent = document.querySelector('.lightbox-content');
+            mostrarEnLightbox(archivosGaleria[lightboxIdx], lightboxContent);
+        }
+        function retrocederLightbox() {
+            lightboxIdx = (lightboxIdx - 1 + archivosGaleria.length) % archivosGaleria.length;
+            const lightboxContent = document.querySelector('.lightbox-content');
+            mostrarEnLightbox(archivosGaleria[lightboxIdx], lightboxContent);
+        }
+        document.querySelector('.lightbox-close').onclick = cerrarLightbox;
+        document.querySelector('.lightbox-next').onclick = avanzarLightbox;
+        document.querySelector('.lightbox-prev').onclick = retrocederLightbox;
+        document.addEventListener('keydown', (e) => {
+            if (!document.querySelector('.lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') cerrarLightbox();
+            if (e.key === 'ArrowRight') avanzarLightbox();
+            if (e.key === 'ArrowLeft') retrocederLightbox();
+        });
+
+        // Ocultar header al hacer scroll (solo visible cuando el usuario está arriba del todo)
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScroll = window.pageYOffset;
+                    if (currentScroll > lastScroll && currentScroll > 80) {
+                        header.classList.add('header-oculto');
+                    } else {
+                        header.classList.remove('header-oculto');
+                    }
+                    lastScroll = currentScroll;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Cargar imágenes cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', cargarImagenes);
+
+        let slideshowInterval = null;
+        let slideshowPlaying = false;
+        const audio = document.getElementById('slideshow-audio');
+        const playBtn = document.querySelector('.lightbox-play');
+        const playIcon = document.getElementById('play-icon');
+
+        function iniciarSlideshow() {
+            if (slideshowPlaying) return;
+            slideshowPlaying = true;
+            playIcon.innerHTML = '&#10073;&#10073;'; // Pausa
+            avanzarLightbox();
+            slideshowInterval = setInterval(avanzarLightbox, 4000);
+            audio.currentTime = 0;
+            audio.play();
+        }
+        function pausarSlideshow() {
+            slideshowPlaying = false;
+            playIcon.innerHTML = '&#9654;'; // Play
+            clearInterval(slideshowInterval);
+            audio.pause();
+        }
+        let lastLightboxIdx = 0;
+        const playBtnCentral = document.getElementById('lightbox-play-central');
+        playBtnCentral.onclick = function() {
+            lastLightboxIdx = lightboxIdx;
+            playBtnCentral.style.display = 'none';
+            const videoPath = 'assets/images/km_20250505_1080p_30f_20250505_144030.mp4';
+            const lightboxContent = document.querySelector('.lightbox-content');
+            lightboxContent.innerHTML = `<video id='video-especial' src='${videoPath}' controls autoplay style='max-width:99vw;max-height:97vh;border-radius:18px;background:#000;box-shadow:0 8px 32px rgba(0,0,0,0.3);transition:all 0.4s;'></video>`;
+            pausarSlideshow();
+            const video = document.getElementById('video-especial');
+            video.onended = function() {
+                mostrarEnLightbox(archivosGaleria[lastLightboxIdx], lightboxContent);
+                playBtnCentral.style.display = '';
+            };
+        };
+        // Detener slideshow al cerrar lightbox
+        document.querySelector('.lightbox-next').onclick = function() {
+            avanzarLightbox();
+            if (slideshowPlaying) pausarSlideshow();
+        };
+        document.querySelector('.lightbox-prev').onclick = function() {
+            retrocederLightbox();
+            if (slideshowPlaying) pausarSlideshow();
+        };
+
+        function reproducirVideoGaleria() {
+            const videoPath = 'assets/images/km_20250505_1080p_30f_20250505_144030.mp4';
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxContent = lightbox.querySelector('.lightbox-content');
+            lightboxContent.innerHTML = `<video src='${videoPath}' controls autoplay style='max-width:96vw;max-height:92vh;border-radius:15px;background:#000;'></video>`;
+            lightbox.classList.add('active');
+        }
+
+        function crearParticulasFondo() {
+            const fondo = document.getElementById('fondo-animado');
+            fondo.innerHTML = '';
+            const colores = ['#d291bc', '#ffb4a2', '#b5838d', '#fff5f5'];
+            for (let i = 0; i < 22; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 80 + 40;
+                p.style.width = p.style.height = size + 'px';
+                p.style.left = (Math.random() * 100) + 'vw';
+                p.style.bottom = '-' + (Math.random() * 40 + 10) + 'vh';
+                p.style.background = colores[Math.floor(Math.random()*colores.length)];
+                p.style.animationDuration = (14 + Math.random()*10) + 's';
+                fondo.appendChild(p);
+            }
+        }
+        crearParticulasFondo();
+        window.addEventListener('resize', crearParticulasFondo);
+    </script>
+</body>
+</html> 
